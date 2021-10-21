@@ -25,3 +25,7 @@ class BjjErrors:
     EMPTY = {
         "Error": "There appear to be no techniques available."
     }
+
+    ALREADY_EXISTS = {
+        "Error": "That technique already exists. Try searching it by name."
+    }

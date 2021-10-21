@@ -11,17 +11,17 @@ from .errors import BjjErrors
 def api_overview(request):
     api_overview = [
         {
-            "URLS": {
+            "URL EXAMPLES": {
                 'Techniques': '/techniques/all/',
                 'Random Technique': '/techniques/any',
-                'Techniuqes By Type': '/techniques/type/<str:tech_type>',
-                'Techniques By Difficulty': '/techniques/difficulty/<str:difficulty>',
-                'Technique By ID': '/techniques/<int:pk>',
-                'Technique By Name': '/techniques/name/<str:name>',
-                'Techniques By Type And Difficulty': '/techniques/t-d/<str:tech_type>/<str:tech_difficulty>',
+                'Techniuqes By Type': '/techniques/type/choke',
+                'Techniques By Difficulty': '/techniques/difficulty/intermediate',
+                'Technique By ID': '/techniques/1',
+                'Technique By Name': '/techniques/name/rear_naked_choke',
+                'Techniques By Type And Difficulty': '/techniques/t-d/choke/intermediate',
                 'Create Technique':'/techniques/create/',
-                'Update Technique': '/techniques/update/<int:pk>',
-                'Delete Technique': '/techniques/delete/<int:pk>'
+                'Update Technique': '/techniques/update/1',
+                'Delete Technique': '/techniques/delete/1'
             },
 
             "DATA FORMAT": {
@@ -137,6 +137,10 @@ def create_technique(request):
     Create a new technique and add it to the database.
     """
     data = request.data
+
+    # checks if the technique entered already exists. 
+    if Technique.objects.all().filter(name=data["name"]):
+        return Response(BjjErrors.ALREADY_EXISTS)
 
     # These if blocks check that choice options are valid and returns an appropriate response
     # so that the user knows what part of their data was incorrect. 
