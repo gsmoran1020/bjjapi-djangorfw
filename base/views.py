@@ -53,8 +53,11 @@ def random_technique(request):
     """
     Get a random technique from the database.
     """
-    techs = Technique.objects.all()
-    random_tech = random.choice(techs)
+    try:
+        techs = Technique.objects.all()
+        random_tech = random.choice(techs)
+    except:
+        return Response(BjjErrors.EMPTY)
     serializer = TechniqueSerializer(random_tech)
     return Response(serializer.data)
 

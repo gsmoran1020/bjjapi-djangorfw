@@ -21,3 +21,7 @@ class BjjErrors:
     SAVE_FAIL = {
         "Error": "Technique saved unsuccessfully. Ensure that all fields are properly filled."
     }
+
+    EMPTY = {
+        "Error": "There appear to be no techniques available."
+    }
