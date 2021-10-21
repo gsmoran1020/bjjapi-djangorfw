@@ -138,6 +138,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 LOGGING = {
     'version': 1,
